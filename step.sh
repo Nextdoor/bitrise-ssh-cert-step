@@ -8,7 +8,7 @@ else
     client_type="linux" 
 fi
 
-wget -q --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 3 -P /tmp "https://s3-us-west-2.amazonaws.com/ssh-ca-binary-corp-nextdoor-com/latest/ca_client.${client_type}/ssh-ca-client"
+wget -q --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 3 -P /tmp "https://s3-us-west-2.amazonaws.com/ssh-ca-binary-corp-nextdoor-com/0.0.13/ca_client.${client_type}/ssh-ca-client"
 chmod +x /tmp/ssh-ca-client
 mkdir -p "${HOME}/.ssh"
 SSH_AUTH_SOCK="${HOME}/.ssh/S.ssh-agent.ssh"
