@@ -1,0 +1,74 @@
+title: Retrieve SSH Certificate
+summary: Setup the SSH agent for the current workflow
+description: |
+  This step retrieve a SSH Certificate using the provided AWS credentials.
+host_os_tags:
+  - osx-10.9
+  - osx-10.10
+  - ubuntu-16.04
+
+type_tags:
+  - access-control
+
+is_requires_admin_user: false
+is_always_run: false
+is_skippable: false
+
+deps:
+  brew:
+  - name: wget
+  apt_get:
+  - name: wget
+
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
+inputs:
+  - ssh_ca_url: "$SSH_CA_URL"
+    opts:
+      title: SSH CA url endpoint
+      is_expand: true
+      is_dont_change_value: true
+      is_sensitive: false
+
+  - ssh_ca_machine_user: "$SSH_CA_MACHINE_USER"
+    opts:
+      title: SSH CA machine user to get certificate for
+      is_expand: true
+      is_dont_change_value: true
+      is_sensitive: false
+
+  - ssh_ca_role: "$SSH_CA_ROLE"
+    opts:
+      title: IAM role to request certificate as
+      is_expand: true
+      is_dont_change_value: true
+      is_sensitive: true
+
+  - ssh_ca_handler_public_key: "$SSH_CA_HANDLER_PUBLIC_KEY"
+    opts:
+      title: Handler public key to use to talk with CA
+      is_expand: true
+      is_dont_change_value: true
+      is_sensitive: true
+
+  - aws_access_key_id: "$AWS_ACCESS_KEY_ID"
+    opts:
+      title: AWS access key id
+      is_expand: true
+      is_dont_change_value: true
+      is_sensitive: true
+
+  - aws_secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+    opts:
+      title: AWS secret access key
+      is_expand: true
+      is_dont_change_value: true
+      is_sensitive: true
+
+outputs:
+  - SSH_AUTH_SOCK:
+    opts:
+      title: SSH Auth Socket info, in case the ssh-agent was started by this step
