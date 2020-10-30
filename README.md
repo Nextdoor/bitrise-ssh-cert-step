@@ -1,6 +1,8 @@
-# foobar
+# Bitrise SSH Certificate Step
 
-foo
+This step requests a SSH certificate for a machine user using IAM credentials
+and launches an instance of `ssh-agent`. This is used when a workflow requires
+checking out multiple private repos as part of the build.
 
 
 ## How to use this Step
